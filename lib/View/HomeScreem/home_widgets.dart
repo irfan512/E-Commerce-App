@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../item_srceen.dart';
+
 Widget customRow(text) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -19,51 +21,55 @@ Widget customRow(text) {
   );
 }
 
-Widget customListView({color1, txt}) {
-  return Expanded(
-    child: ListView.builder(
-        itemCount: color1.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FittedBox(
-              fit: BoxFit.fill,
+Widget customListView({context, color1, txt}) {
+  return Container(
+    height: 200,
+    child: InkWell(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ItemScreen()));
+      },
+      child: ListView.builder(
+          itemCount: color1.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Container(
+              width: 150,
+              margin: EdgeInsets.all(10),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                       height: 100,
-                      width: 100,
+                      width: 150,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: color1[index],
                       )),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        txt[index],
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Text(
-                        "Androa SkinCare",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black),
-                      ),
-                      Text(
-                        "\$900",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
+                  Text(
+                    txt[index] +
+                        "asmndgasjhdgasdjhgasdjhgadjhgasdjsgdjhagdjhgadsjgajsdgajsdgsajdh",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Text(
+                    "Androa SkinCare",
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black),
+                  ),
+                  Text(
+                    "\$900",
+                    style: TextStyle(fontSize: 16),
                   ),
                 ],
               ),
-            ),
-          );
-        }),
+            );
+          }),
+    ),
   );
 }
 
@@ -72,7 +78,8 @@ Widget customlistview1({
   txt,
   image,
 }) {
-  return Expanded(
+  return Container(
+    height: 150,
     child: ListView.builder(
         padding: EdgeInsets.zero,
         shrinkWrap: true,
