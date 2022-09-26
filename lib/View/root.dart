@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:students_project/View/profile_screen.dart';
 import 'package:students_project/View/search_screen.dart';
 
 import 'HomeScreem/home.dart';
+import 'ProfileScreen/person.dart';
 import 'favorite_screen.dart';
 import 'menu_screen.dart';
 

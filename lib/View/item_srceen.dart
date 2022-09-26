@@ -7,6 +7,8 @@ class ItemScreen extends StatefulWidget {
 }
 
 class _ItemScreenState extends State<ItemScreen> {
+  int count = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -203,9 +205,16 @@ class _ItemScreenState extends State<ItemScreen> {
                                             color: Colors.white,
                                             borderRadius:
                                                 BorderRadius.circular(100)),
-                                        child: Icon(
-                                          Icons.add,
-                                          size: 20,
+                                        child: InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              count++;
+                                            });
+                                          },
+                                          child: Icon(
+                                            Icons.add,
+                                            size: 20,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -213,23 +222,33 @@ class _ItemScreenState extends State<ItemScreen> {
                                       width: 15,
                                     ),
                                     Text(
-                                      "1",
+                                      "$count",
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 16),
                                     ),
                                     SizedBox(
                                       width: 15,
                                     ),
-                                    Card(
-                                      elevation: 6,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(100)),
-                                        child: Icon(
-                                          Icons.remove,
-                                          size: 20,
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          if (count == 1) {
+                                            print(count);
+                                          } else
+                                            count--;
+                                        });
+                                      },
+                                      child: Card(
+                                        elevation: 6,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(100)),
+                                          child: Icon(
+                                            Icons.remove,
+                                            size: 20,
+                                          ),
                                         ),
                                       ),
                                     ),

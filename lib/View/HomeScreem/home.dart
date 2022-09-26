@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -104,7 +104,6 @@ class _HomeState extends State<Home> {
                     fontWeight: FontWeight.w500),
               ),
 
-              // GridView
               Center(
                 child: Wrap(
                   // alignment: WrapAlignment.center,
