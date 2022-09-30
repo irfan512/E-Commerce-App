@@ -67,7 +67,8 @@ class _ProfileState extends State<Profile> {
                         bottomLeft: Radius.circular(15),
                         bottomRight: Radius.circular(15))),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 35),
+                  padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * .05),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

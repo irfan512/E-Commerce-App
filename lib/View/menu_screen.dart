@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Menu extends StatelessWidget {
-  const Menu({Key? key}) : super(key: key);
-
+class Setting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

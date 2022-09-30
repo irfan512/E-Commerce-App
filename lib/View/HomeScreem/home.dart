@@ -108,11 +108,11 @@ class _HomeState extends State<Home> {
                 child: Wrap(
                   // alignment: WrapAlignment.center,
                   runAlignment: WrapAlignment.spaceBetween,
-                  crossAxisAlignment: WrapCrossAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.start,
                   children: [
                     for (int index = 0; index < color1.length; index++)
                       Container(
-                        width: 150,
+                        width: MediaQuery.of(context).size.width * .37,
                         margin: EdgeInsets.all(10),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -120,7 +120,7 @@ class _HomeState extends State<Home> {
                           children: [
                             Container(
                                 height: 100,
-                                width: 150,
+                                width: MediaQuery.of(context).size.width * .37,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: color1[index],

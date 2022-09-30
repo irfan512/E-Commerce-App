@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:students_project/View/search_screen.dart';
+import 'package:students_project/View/add_to_cart.dart';
 
 import 'HomeScreem/home.dart';
 import 'ProfileScreen/person.dart';
 import 'favorite_screen.dart';
 import 'menu_screen.dart';
 
-int selectedindex = 2;
+int selectedindex = 0;
 
 var screens = [
-  Menu(),
-  Search(),
   Home(),
+  AddToCart(),
   Favorite(),
   Profile(),
+  Setting(),
 ];
 
 class Root extends StatefulWidget {
@@ -42,14 +42,18 @@ class _RootState extends State<Root> {
               ));
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: "List"),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.explore), label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border_outlined), label: "Menu"),
+              icon: Icon(Icons.shopping_cart), label: "Cart"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_border_outlined), label: "Favorite"),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             label: "Profile",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Seetings",
           ),
         ],
       ),
