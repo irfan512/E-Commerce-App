@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:students_project/View/order.dart';
 
 class AddToCart extends StatefulWidget {
   const AddToCart({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class _AddToCartState extends State<AddToCart> {
             ),
           ),
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           title: const Text(
             "Add to Cart",
             style: TextStyle(
@@ -52,7 +53,7 @@ class _AddToCartState extends State<AddToCart> {
           children: [
             Expanded(
               child: ListView.builder(
-                  itemCount: 2,
+                  itemCount: 1,
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
@@ -145,7 +146,8 @@ class _AddToCartState extends State<AddToCart> {
                                                 height: 25,
                                                 width: 25,
                                                 decoration: BoxDecoration(
-                                                    color: Color(0xFFFFA837),
+                                                    color:
+                                                        const Color(0xFFFFA837),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             100)),
@@ -180,7 +182,8 @@ class _AddToCartState extends State<AddToCart> {
                                                 height: 25,
                                                 width: 25,
                                                 decoration: BoxDecoration(
-                                                    color: Color(0xFFFFA837),
+                                                    color:
+                                                        const Color(0xFFFFA837),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             100)),
@@ -210,34 +213,67 @@ class _AddToCartState extends State<AddToCart> {
                     );
                   }),
             ),
-            Center(
-              child: InkWell(
-                onTap: () {
-                  // Navigator.of(context)
-                  // .push(MaterialPageRoute(builder: (context) => Order()));
-                },
-                child: Card(
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width * 0.60,
-                      height: 40.0,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        gradient: LinearGradient(colors: [
-                          Color(0xFFFFA837),
-                          Color(0xFFFFA837),
-                        ]),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      const Text(
+                        "TOTAL PRICE",
+                        style: TextStyle(
+                            color: Colors.black,
+                            overflow: TextOverflow.ellipsis,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16),
                       ),
-                      child: const Text("Order Now",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 18.0))),
+                      const Text(
+                        "500 Pkr",
+                        style: TextStyle(
+                            color: Colors.black,
+                            overflow: TextOverflow.ellipsis,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Center(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: ((context) => Order())));
+                    },
+                    child: Card(
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Container(
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width * 0.90,
+                          height: 40.0,
+                          decoration: const BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            gradient: LinearGradient(colors: [
+                              Color(0xFFFFA837),
+                              Color(0xFFFFA837),
+                            ]),
+                          ),
+                          child: const Text("Confirm Order",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18.0))),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

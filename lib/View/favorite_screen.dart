@@ -18,7 +18,7 @@ class Favorite extends StatelessWidget {
             ),
           ),
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           title: const Text(
             "Favorite",
             style: TextStyle(
