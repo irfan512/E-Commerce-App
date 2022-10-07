@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'ConfirmBillScrenn/confirm_bill.dart';
 import 'const_Widget.dart';
 
 class Order extends StatefulWidget {
@@ -114,18 +115,19 @@ class _OrderState extends State<Order> {
             Center(
               child: InkWell(
                 onTap: () {
-                  if (fullNameController.text.isEmpty) {
-                    snackBar(context, "Please! Enter Full Name");
-                  } else if (phonenumberController.text.isEmpty) {
-                    snackBar(context, "Please! Enter Phone Number");
-                  } else if (addressController.text.isEmpty) {
-                    snackBar(context, "Please! Enter Address");
-                  } else if (commentController.text.isEmpty) {
-                    snackBar(context, "Please! Enter Some Comment");
-                  } else {
-                    // Navigator.of(context).push(
-                    //     MaterialPageRoute(builder: (context) => AddAddress()));
-                  }
+                  // if (fullNameController.text.isEmpty) {
+                  //   snackBar(context, "Please! Enter Full Name");
+                  // } else if (phonenumberController.text.isEmpty) {
+                  //   snackBar(context, "Please! Enter Phone Number");
+                  // } else if (addressController.text.isEmpty) {
+                  //   snackBar(context, "Please! Enter Address");
+                  // } else if (commentController.text.isEmpty) {
+                  //   snackBar(context, "Please! Enter Some Comment");
+                  // } else {
+
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => CheckBill()));
+                  // }
                 },
                 child: Card(
                   elevation: 10,

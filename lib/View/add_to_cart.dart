@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:students_project/View/order.dart';
+import 'package:students_project/View/root.dart';
 
 class AddToCart extends StatefulWidget {
   const AddToCart({Key? key}) : super(key: key);
@@ -246,6 +247,7 @@ class _AddToCartState extends State<AddToCart> {
                 Center(
                   child: InkWell(
                     onTap: () {
+                      selectedindex = 1;
                       Navigator.push(context,
                           MaterialPageRoute(builder: ((context) => Order())));
                     },

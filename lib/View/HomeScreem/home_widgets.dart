@@ -48,8 +48,7 @@ Widget customListView({context, color1, txt}) {
                         color: color1[index],
                       )),
                   Text(
-                    txt[index] +
-                        "asmndgasjhdgasdjhgasdjhgadjhgasdjsgdjhagdjhgadsjgajsdgajsdgsajdh",
+                    txt[index],
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontSize: 16),

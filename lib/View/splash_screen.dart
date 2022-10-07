@@ -13,7 +13,6 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
-  late Animation colorAnimation;
 
   @override
   void initState() {
@@ -26,8 +25,7 @@ class _SplashScreenState extends State<SplashScreen>
     controller =
         AnimationController(duration: const Duration(seconds: 2), vsync: this);
     animation = Tween<double>(begin: 120, end: 350).animate(controller);
-    colorAnimation =
-        ColorTween(begin: Colors.red, end: Colors.green).animate(controller);
+
     animation.addListener(() {
       setState(() {});
     });
@@ -45,6 +43,7 @@ class _SplashScreenState extends State<SplashScreen>
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         body: Center(
           child: Column(

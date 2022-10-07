@@ -27,79 +27,84 @@ class Favorite extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        body: Center(
-          child: Wrap(
-            children: [
-              for (int index = 0; index < 6; index++)
-                Padding(
-                  padding: EdgeInsets.all(4),
-                  child: Card(
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * .4,
-                          margin: EdgeInsets.all(5),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: 100,
-                                  width: MediaQuery.of(context).size.width * .4,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          "assets/images/bottle.png"),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Wrap(
+              children: [
+                for (int index = 0; index < 6; index++)
+                  Padding(
+                    padding: EdgeInsets.all(4),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * .4,
+                            margin: EdgeInsets.all(5),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    height: 100,
+                                    width:
+                                        MediaQuery.of(context).size.width * .4,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            "assets/images/bottle.png"),
+                                      ),
+                                      // color: Colors.amber
                                     ),
-                                    // color: Colors.amber
                                   ),
-                                ),
-                                Text(
-                                  "Head Phone",
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.black),
-                                ),
-                                Text(
-                                  "Androa SkinCare",
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black),
-                                ),
-                                Text(
-                                  "\$900",
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ],
+                                  Text(
+                                    "Head Phone",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.black),
+                                  ),
+                                  Text(
+                                    "Androa SkinCare",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black),
+                                  ),
+                                  Text(
+                                    "\$900",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Positioned(
-                            right: 10,
-                            left: 100,
-                            top: 10,
-                            child: CircleAvatar(
-                              // radius: 30,
-                              backgroundColor: Colors.white24,
-                              child: Icon(
-                                Icons.favorite,
-                                color: Colors.redAccent,
-                                size: 25,
-                              ),
-                            )),
-                      ],
+                          Positioned(
+                              right: 10,
+                              left: 100,
+                              top: 10,
+                              child: CircleAvatar(
+                                // radius: 30,
+                                backgroundColor: Colors.white24,
+                                child: Icon(
+                                  Icons.favorite,
+                                  color: Colors.redAccent,
+                                  size: 25,
+                                ),
+                              )),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
         ));
   }

@@ -1,38 +1,84 @@
 import 'package:flutter/material.dart';
 
-Widget customTextFormField() {
-  return TextFormField(
-    decoration: InputDecoration(
-      hintText: "email@gmail.com",
-    ),
-  );
+extension extString on String {
+  bool get isValidEmail {
+    final emailRegExp = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+    return emailRegExp.hasMatch(this);
+  }
+
+  bool get isValidPassword {
+    final passwordRegExp = RegExp(
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}/pre>');
+    return passwordRegExp.hasMatch(this);
+  }
 }
 
-Widget customTextFormField2() {
-  return TextFormField(
-    decoration: InputDecoration(
-        hintText: "***********", suffixIcon: Icon(Icons.remove_red_eye)),
-  );
+class CustomTextFormField extends StatefulWidget {
+  CustomTextFormField(
+      {this.bool1, this.hint, this.icon, this.validator, this.controller});
+
+  var hint;
+  var icon;
+  var bool1;
+  var controller;
+  final String? Function(String?)? validator;
+
+  @override
+  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
 
-Widget customSignUpTxtField1() {
-  return TextFormField(
-    decoration: InputDecoration(hintText: "Please type full name"),
-  );
+class _CustomTextFormFieldState extends State<CustomTextFormField> {
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: widget.controller,
+      obscureText: widget.bool1 ?? false,
+      validator: widget.validator,
+      decoration: InputDecoration(
+          hintText: widget.hint,
+          suffixIcon: widget.icon == null
+              ? Container(
+                  width: 0,
+                  height: 0,
+                )
+              : IconButton(
+                  onPressed: () {
+                    if (widget.bool1 == true) {
+                      widget.bool1 = false;
+
+                      setState(() {});
+                    } else {
+                      widget.bool1 = true;
+                      setState(() {});
+                    }
+                  },
+                  icon: widget.bool1 == false
+                      ? Icon(widget.icon)
+                      : Icon(Icons.visibility_off),
+                )),
+    );
+  }
 }
 
-Widget customSignUpTxtField2() {
-  return TextFormField(
-    decoration: InputDecoration(hintText: "email@gmail.com"),
-  );
-}
-
-Widget customSignUpTxtField3() {
-  return TextFormField(
-    decoration: InputDecoration(
-        hintText: "*********", suffixIcon: Icon(Icons.remove_red_eye)),
-  );
-}
+// customTextFormField({hint = "", icon, bool1}) {
+//   return TextFormField(
+//     obscureText: bool1,
+//     decoration: InputDecoration(
+//         hintText: hint,
+//         suffixIcon: icon == null
+//             ? Container(
+//                 width: 0,
+//                 height: 0,
+//               )
+//             : IconButton(
+//                 onPressed: () {
+//                   if (bool1 == true) {
+//                     bool1 == false;
+//                   }
+//                 },
+//                 icon: Icon(icon))),
+//   );
+// }
 
 const primary = Color(0xFFFF7D31);
 

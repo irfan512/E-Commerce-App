@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
+import 'package:students_project/View/add_to_cart.dart';
+import 'package:students_project/View/root.dart';
 
 class ItemScreen extends StatefulWidget {
   @override
@@ -103,61 +105,58 @@ class _ItemScreenState extends State<ItemScreen> {
                             ],
                           ),
                           SizedBox(height: 9),
-                          Row(children: [
-                            const Text(
-                              "Rating",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(
-                              width: 12,
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 17,
-                              color: Colors.orange[400],
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 17,
-                              color: Colors.orange[400],
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 17,
-                              color: Colors.orange[400],
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 17,
-                              color: Colors.orange[400],
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 17,
-                              color: Colors.orange[400],
-                            ),
-                            const SizedBox(
-                              width: 12,
-                            ),
-                            const Text(
-                              "(129 Votes)",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                              ),
-                            ),
-                            Spacer(),
-                            Text(
-                              "\$24.00",
-                              style: TextStyle(
-                                  color: Colors.orange[500],
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ]),
+                          Wrap(
+                              spacing: 10,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              runAlignment: WrapAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  "Rating",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  size: 17,
+                                  color: Colors.orange[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  size: 17,
+                                  color: Colors.orange[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  size: 17,
+                                  color: Colors.orange[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  size: 17,
+                                  color: Colors.orange[400],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  size: 17,
+                                  color: Colors.orange[400],
+                                ),
+                                const Text(
+                                  "(129 Votes)",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Text(
+                                  "\$24.00",
+                                  style: TextStyle(
+                                      color: Colors.orange[500],
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ]),
                           SizedBox(height: 10),
                           const ReadMoreText(
                             'FlLK framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebas FlLK framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
@@ -256,16 +255,24 @@ class _ItemScreenState extends State<ItemScreen> {
                                 ),
                               ),
                               Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: Colors.deepOrange,
-                                ),
                                 height: 40,
+                                width: MediaQuery.of(context).size.width * .4,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.deepOrange),
                                 child: MaterialButton(
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12)),
-                                  onPressed: null,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  onPressed: () {
+                                    selectedindex = 1;
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Root()));
+                                    setState(() {});
+                                  },
                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
                                         "Add to Cart",
