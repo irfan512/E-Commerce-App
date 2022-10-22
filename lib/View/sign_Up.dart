@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:students_project/View/const_Widget.dart';
 import 'package:students_project/View/root.dart';
@@ -12,6 +14,11 @@ class SignUp extends StatefulWidget {
 
 //0xffE63B2C
 class _SignUpState extends State<SignUp> {
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +50,10 @@ class _SignUpState extends State<SignUp> {
                   "Name",
                   style: TextStyle(color: Colors.black, fontSize: 16),
                 ),
-                CustomTextFormField(hint: "Enter Full Name"),
+                CustomTextFormField(
+                  hint: "Enter Full Name",
+                  controller: nameController,
+                ),
                 SizedBox(
                   height: 15,
                 ),
@@ -54,7 +64,10 @@ class _SignUpState extends State<SignUp> {
                     fontSize: 16,
                   ),
                 ),
-                CustomTextFormField(hint: "Enter Email"),
+                CustomTextFormField(
+                  hint: "Enter Email",
+                  controller: emailController,
+                ),
                 SizedBox(
                   height: 15,
                 ),
@@ -66,6 +79,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 CustomTextFormField(
+                  controller: passwordController,
                   hint: "Enter Password",
                   icon: Icons.remove_red_eye,
                   bool1: true,
@@ -81,6 +95,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 CustomTextFormField(
+                  controller: confirmPasswordController,
                   hint: "Confirm Password",
                   icon: Icons.remove_red_eye,
                   bool1: true,
@@ -90,9 +105,41 @@ class _SignUpState extends State<SignUp> {
                 ),
                 Center(
                   child: InkWell(
-                    onTap: () {
+                    onTap: () async{
+                      FocusScope.of(context).unfocus();
+                      if (nameController.text.isEmpty) {
+                        snackBar(context, "Please! Enter Name");
+                      } else if (emailController.text.isEmpty) {
+                        snackBar(context, "Please! Enter Email");
+                      } else if (passwordController.text.isEmpty) {
+                        snackBar(context, "Please! Enter Password");
+                      }  else if (passwordController.text.length < 8) {
+                        snackBar(context, "Please! Enter at least 8 characters");
+                      }else if (confirmPasswordController.text.isEmpty) {
+                        snackBar(context, "Please! Enter Confirm Password");
+                      } else {
+                        try {
+                         var data = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                              email: emailController.text,
+                              password: passwordController.text);
+                              print(data);
+                              if(data.user != null){
+                              var id = data.user!.uid;
+                              FirebaseFirestore.instance.collection('users').doc(id).set({
+                                'email':emailController.text,
+                                'password':passwordController.text,
+                                'name':nameController.text,
+                              });
+                              
+
+
                       Navigator.push(context,
                           MaterialPageRoute(builder: ((context) => Root())));
+                              }
+                        } catch (e) {
+                          snackBar(context, e.toString());
+                        }
+                      }
                     },
                     child: Container(
                       height: MediaQuery.of(context).size.height * 0.07,

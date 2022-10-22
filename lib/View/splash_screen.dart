@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:students_project/View/root.dart';
 import 'package:students_project/View/sign_In.dart';
@@ -19,7 +20,8 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     Timer(Duration(seconds: 2), () {
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => SignIn()));
+          .pushReplacement(MaterialPageRoute(builder: (_) =>
+           FirebaseAuth.instance.currentUser != null ? Root() : SignIn()));
     });
     super.initState();
     controller =

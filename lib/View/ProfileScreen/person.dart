@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:students_project/View/ProfileScreen/person_widgets.dart';
+import 'package:students_project/View/sign_In.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -50,12 +54,34 @@ class _ProfileState extends State<Profile> {
     "Contact with us",
     "About Us",
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUserDetail();
+  }
+  var data;
+  fetchUserDetail() async {
+    var id = FirebaseAuth.instance.currentUser!.uid;
+     data =
+        await FirebaseFirestore.instance.collection('users').doc(id).get();
+        setState(() {
+          
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
+    return Scaffold(      
+      body: data == null ? Center(child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircularProgressIndicator.adaptive(),
+          Text("Please Wait!"),
+        ],
+      ) ) : SingleChildScrollView(
+        child:  Column(
           children: [
             Stack(
               clipBehavior: Clip.none,
@@ -74,7 +100,7 @@ class _ProfileState extends State<Profile> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Column(
+                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -98,15 +124,15 @@ class _ProfileState extends State<Profile> {
                             SizedBox(
                               height: 5,
                             ),
-                            const Text(
-                              "Hassan khan",
+                            Text(
+                              data.get('name'),
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 16),
                             ),
-                            const Text(
-                              "442@gmail.com",
+                            Text(
+                               data.get('email'),
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
@@ -131,10 +157,11 @@ class _ProfileState extends State<Profile> {
                                 BorderRadius.all(Radius.circular(20))),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Center(child: customContainer(txt3, txt4)),
+                          child: Center(
+                              child: customContainer(context, txt3, txt4)),
                         ),
                       ),
-                    ))
+                    )),
               ],
             ),
             SizedBox(
@@ -142,6 +169,34 @@ class _ProfileState extends State<Profile> {
             ),
             customCard(context, color, txt, icon, icon3),
             customCard4(context, color2, txt2, icon2, icon3),
+            InkWell(
+              onTap: () {
+                FirebaseAuth.instance.signOut();
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (_) => SignIn()),
+                    (route) => false);
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Row(children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.04,
+                    width: MediaQuery.of(context).size.width * 0.08,
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Icon(Icons.logout, size: 18, color: Colors.white),
+                  ),
+                  SizedBox(
+                    width: 40,
+                  ),
+                  Text('Sign Out'),
+                  Spacer(),
+                  // Icon(icon3[index])
+                ]),
+              ),
+            ),
           ],
         ),
       ),

@@ -87,7 +87,7 @@ const primary = Color(0xFFFF7D31);
 snackBar(context, text) {
   return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     content: Text(text),
-    duration: Duration(milliseconds: 300),
+    duration: Duration(milliseconds: 3000),
   ));
 }
 

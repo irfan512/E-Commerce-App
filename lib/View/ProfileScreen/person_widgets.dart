@@ -70,7 +70,7 @@ Widget customCard4(context, color2, txt2, icon2, icon3) {
   );
 }
 
-Widget customContainer(txt3, txt4) {
+Widget customContainer(context,txt3, txt4) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,7 +98,8 @@ Widget customContainer(txt3, txt4) {
               )
             ],
           ),
-        )
+        ),
+
     ],
   );
 }

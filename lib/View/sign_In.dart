@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:students_project/View/const_Widget.dart';
 import 'package:students_project/View/root.dart';
@@ -17,7 +19,7 @@ class _SignInState extends State<SignIn> {
   TextEditingController passward = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(      
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(30),
@@ -71,7 +73,7 @@ class _SignInState extends State<SignIn> {
                     icon: Icons.remove_red_eye,
                     bool1: true,
                     validator: (val) {
-                      if (!val!.isValidPassword) return 'Enter valid password';
+                      // if (!val!.isValidPassword) return 'Enter valid password';
                     },
                   ),
                   SizedBox(
@@ -79,13 +81,24 @@ class _SignInState extends State<SignIn> {
                   ),
                   Center(
                     child: InkWell(
-                      onTap: () {
+                      onTap: () async{
+                        FocusScope.of(context).unfocus();
                         if (formkey.currentState!.validate()) {
+
+                          try{
+                           var user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email.text, password: passward.text);
+                          if(user.user != null){
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (_) => Root(),
                             ),
                           );
+                          }
+                          }catch(e){
+                            snackBar(context, e.toString() );
+                          }
+
+                         
                         }
                       },
                       child: Container(
