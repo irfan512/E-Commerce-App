@@ -85,8 +85,13 @@ const primary = Color(0xFFFF7D31);
 // ////////////////////////////////
 
 snackBar(context, text) {
-  return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text(text),
+  return ScaffoldMessenger.of(context).showSnackBar(SnackBar(    
+    content: Row(
+      children: [
+        Icon(Icons.done,color: Colors.green,),
+        Text(text),
+      ],
+    ),
     duration: Duration(milliseconds: 3000),
   ));
 }

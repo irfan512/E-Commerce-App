@@ -4,6 +4,11 @@ import 'package:students_project/View/add_to_cart.dart';
 import 'package:students_project/View/root.dart';
 
 class ItemScreen extends StatefulWidget {
+  final arham;
+  ItemScreen({this.arham});
+
+
+
   @override
   State<ItemScreen> createState() => _ItemScreenState();
 }
@@ -61,14 +66,14 @@ class _ItemScreenState extends State<ItemScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Christin bottel",
+                          Text(
+                            "${widget.arham.get('category')}",
                             style: TextStyle(
                               color: Colors.black45,
                             ),
                           ),
                           SizedBox(height: 5),
-                          const Text("Fantasist Night Cream",
+                          Text("${widget.arham.get("name")}",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold)),
@@ -150,7 +155,7 @@ class _ItemScreenState extends State<ItemScreen> {
                                   ),
                                 ),
                                 Text(
-                                  "\$24.00",
+                                  "Rs. ${widget.arham.get('price')}",
                                   style: TextStyle(
                                       color: Colors.orange[500],
                                       fontSize: 15,
@@ -158,12 +163,12 @@ class _ItemScreenState extends State<ItemScreen> {
                                 )
                               ]),
                           SizedBox(height: 10),
-                          const ReadMoreText(
-                            'FlLK framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebas FlLK framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
+                          ReadMoreText(
+                            '${widget.arham.get('desc') == null ? ""  : widget.arham.get('desc')}',
 
                             trimLines: 1,
                             trimLength: 140,
-                            preDataText: "AMANDA",
+                            // preDataText: "AMANDA",
                             preDataTextStyle:
                                 TextStyle(fontWeight: FontWeight.w500),
                             style: TextStyle(color: Colors.black),

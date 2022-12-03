@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:students_project/View/admin_panel/add_product_screen.dart';
 import 'home_widgets.dart';
 
 class Home extends StatefulWidget {
@@ -13,7 +14,8 @@ class _HomeState extends State<Home> {
     Colors.blueAccent,
     Colors.orange,
     Colors.pink,
-    Colors.green
+    // Colors.green,
+    // Colors.green,
   ];
   List txt = [
     "Lipstick",
@@ -34,6 +36,13 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      // floatingActionButton:FloatingActionButton(
+      //   child: Icon(Icons.add),
+      //   onPressed: (){
+          
+      //       Navigator.push(context, MaterialPageRoute(builder: (_) => AddProductScreen()) );
+      //   },
+      // ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
@@ -58,12 +67,12 @@ class _HomeState extends State<Home> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              customRow("Catergories"),
+              // customRow(context,"Catergories"),
 
               // ist listview
               customlistview1(color1: color1, txt: txt, image: image1),
 
-              customRow("Recommend for You"),
+             
               // Second listview
               customListView(
                 context: context,
@@ -90,7 +99,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
 
-              customRow("Valentine's Day"),
+              // customRow(context,"Valentine's Day"),
 
               // 3rd lidtview
               customListView(context: context, color1: color1, txt: txt),
