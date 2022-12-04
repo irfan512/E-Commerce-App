@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
       // home: TestDemo(),
+      // home: demo(),
       home: SplashScreen(),
     );
   }

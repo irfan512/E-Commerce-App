@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:students_project/View/order.dart';
 import 'package:students_project/View/root.dart';
 
@@ -23,6 +26,33 @@ class _AddToCartState extends State<AddToCart> {
       _counter--;
     });
   }
+
+
+  
+
+  var myCart;
+
+  getCart()async{
+    var pref = await SharedPreferences.getInstance();
+    var data = pref.getString('cart');
+    if(data != null){
+      myCart = jsonDecode(data);
+      setState(() {
+        
+      });
+    }
+   
+  }
+
+  
+
+
+  @override
+  void initState() {    
+    super.initState();
+    getCart();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +135,8 @@ class _AddToCartState extends State<AddToCart> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
-                                            "Bottle",
+                                          Text(
+                                            "${myCart['name']}",
                                             maxLines: 1,
                                             textDirection: TextDirection.ltr,
                                             style: TextStyle(
@@ -135,7 +165,7 @@ class _AddToCartState extends State<AddToCart> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("PKR 300",
+                                          Text("PKR ${myCart['price']}",
                                               style: TextStyle(
                                                   // color: secondary,
                                                   fontWeight: FontWeight.w800,

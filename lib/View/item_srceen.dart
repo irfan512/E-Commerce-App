@@ -3,6 +3,8 @@ import 'package:readmore/readmore.dart';
 import 'package:students_project/View/add_to_cart.dart';
 import 'package:students_project/View/root.dart';
 
+import 'const_Widget.dart';
+
 class ItemScreen extends StatefulWidget {
   final arham;
   ItemScreen({this.arham});
@@ -269,12 +271,20 @@ class _ItemScreenState extends State<ItemScreen> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8)),
                                   onPressed: () {
-                                    selectedindex = 1;
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Root()));
-                                    setState(() {});
+                                    var data = {
+                                      "name": widget.arham.get('name'),
+                                      "price":widget.arham.get('price'),
+                                      "count":1
+                                    };
+
+                                    addToCart(context,data);
+
+                                    // selectedindex = 1;
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (_) => Root()));
+                                    // setState(() {});
                                   },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,

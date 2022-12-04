@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 extension extString on String {
   bool get isValidEmail {
@@ -140,4 +143,12 @@ class CustomTextField extends StatelessWidget {
       ),
     );
   }
+}
+
+
+
+addToCart(context,data)async{
+  var pref = await SharedPreferences.getInstance();
+  pref.setString('cart', jsonEncode(data));
+  snackBar(context, 'Item Added');
 }
